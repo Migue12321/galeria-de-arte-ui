@@ -157,8 +157,12 @@ export default function Album() {
 										title="Image title"
 									/>
 									<CardContent className={classes.cardContent}>
-										<Typography>
-											This is a media card. You can use this section to describe the content.
+									<Typography variant="subtitle1" component="subtitle2">
+											{titles[card]}
+										</Typography>
+										<br/>
+										<Typography variant="subtitle2" component="subtitle2">
+											{sizes[card]}
 										</Typography>
 									</CardContent>
 									<CardActions>
