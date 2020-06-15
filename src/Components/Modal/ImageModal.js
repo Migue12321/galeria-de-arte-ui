@@ -15,22 +15,22 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(3, 4, 3),
+    padding: theme.spacing(4, 4, 3, 3),
     border: '2px solid #000',
     justifyContent: 'center',
     alignItems: 'center',
   },
   imageInfo:{
+    width:"90%",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(3, 4, 3),
+    padding: theme.spacing(4, 4, 4),
     border: '0.5px solid #000',
-    justifyContent: 'center',
-    alignItems: 'center',
+  
   },
 
   image: {
-    width:"80%",
+    width:"90%",
     border: '0.5px solid #000',
     justifyItems:"center",
     borderRadius: "20px 20px 20px 20px",
@@ -65,17 +65,17 @@ export default function TransitionsModal(props) {
           <Grid  
               container
               direction="row"
-              justify="center"
+              justify="space-between"
               alignItems="center"
           >
             <Grid  item md={6} sm={6} lg={6} xs={12}> 
               <img className={classes.image} src={props.image} alt={props.title}></img>
-            </Grid>
+            </Grid> <Grid item />
             <Grid item md={6} sm={6} lg={6} xs={12}>
               <div  className={classes.imageInfo}>  
                 <Typography variant="h4" component="h2">{props.title}</Typography>
                 <br/>
-                <Typography variant="subtitle2" component="subtitle2">Medidas: {props.size}</Typography>
+                <Typography variant="subtitle2">Medidas: {props.size}</Typography>
               </div>
             </Grid>
           </Grid>

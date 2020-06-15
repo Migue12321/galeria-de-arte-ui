@@ -58,9 +58,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8,9];
+const cards = [0,1, 2, 3, 4, 5, 6, 7, 8];
 const titles =[
-	"",
 	"Totoro",
 	"Jar of Universe",
 	"World",
@@ -72,7 +71,6 @@ const titles =[
 	"Stay inside"
 ]	
 const sizes =[
-	"",
 	"15cm X 14cm",
 	"15cm X 14cm",
 	"15cm X 14cm",
@@ -84,7 +82,6 @@ const sizes =[
 	"15cm X 14cm",
 ]
 const cardsUrl= [
-	"",
 	"https://scontent.fcbb1-1.fna.fbcdn.net/v/t1.0-9/s960x960/102683273_3658289037521269_5401877631665410758_o.jpg?_nc_cat=104&_nc_sid=8024bb&_nc_ohc=wD6pd4z2DxsAX8D7Du6&_nc_ht=scontent.fcbb1-1.fna&_nc_tp=7&oh=4e25593ddfe90a456b2a882fd8d829b3&oe=5F0A0A1F",
 	"https://scontent.fcbb1-2.fna.fbcdn.net/v/t1.0-9/s960x960/100088919_3605113676172139_251365709777469440_o.jpg?_nc_cat=103&_nc_sid=8024bb&_nc_ohc=rOXc50p25BcAX-BA96c&_nc_ht=scontent.fcbb1-2.fna&_nc_tp=7&oh=9f6611e4f87e185e5f5b965dd6e26e5c&oe=5F0A8E15",
 	"https://scontent.fcbb1-1.fna.fbcdn.net/v/t1.0-9/s960x960/98347090_3605113402838833_4721860957591044096_o.jpg?_nc_cat=109&_nc_sid=8024bb&_nc_ohc=pp6GpBH6t0MAX9f4SH_&_nc_ht=scontent.fcbb1-1.fna&_nc_tp=7&oh=c89495bb4b9c4c74713916810064b015&oe=5F0B1076",
@@ -157,11 +154,11 @@ export default function Album() {
 										title="Image title"
 									/>
 									<CardContent className={classes.cardContent}>
-									<Typography variant="subtitle1" component="subtitle2">
+									<Typography variant="subtitle1" >
 											{titles[card]}
 										</Typography>
 										<br/>
-										<Typography variant="subtitle2" component="subtitle2">
+										<Typography variant="subtitle2" >
 											{sizes[card]}
 										</Typography>
 									</CardContent>
