@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'; 
 import Link from '@material-ui/core/Link';
 import Modal from '../Components/Modal/ImageModal'
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 function Copyright() {
 	return (
@@ -167,7 +168,7 @@ export default function Album() {
 									</CardContent>
 									<CardActions>
 										<Button size="small" color="primary" onClick={handleOpen.bind(this,card)}>
-											View
+											Ver
 										</Button>
 									</CardActions>
 								</Card>
@@ -185,11 +186,18 @@ export default function Album() {
 			{/* Footer */}
 			<footer className={classes.footer}>
 				<Typography variant="h6" align="center" gutterBottom>
-					Footer
+					Sigueme en:
 				</Typography>
-				<Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-					Something here to give the footer a purpose!
+				{/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
 				</Typography>
+			 */}
+				<Grid container justify="center">
+					<Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+						<Link color="inherit" href="https://www.instagram.com/isabela_0010/">
+							<InstagramIcon fontSize="small"/> isabela_0010
+						</Link>	
+					</Typography>
+				</Grid>
 				<Copyright />
 			</footer>
 			{/* End footer */}
