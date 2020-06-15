@@ -157,11 +157,11 @@ export default function Album() {
 										title="Image title"
 									/>
 									<CardContent className={classes.cardContent}>
-									<Typography variant="subtitle1" component="subtitle2">
+									<Typography variant="subtitle1">
 											{titles[card]}
 										</Typography>
 										<br/>
-										<Typography variant="subtitle2" component="subtitle2">
+										<Typography variant="subtitle2" >
 											{sizes[card]}
 										</Typography>
 									</CardContent>
