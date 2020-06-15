@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(4, 4, 3, 3),
+    padding: theme.spacing(3, 3, 3, 3),
     border: '2px solid #000',
-    justifyContent: 'center',
+    justifyContent: 'center', 
     alignItems: 'center',
   },
   imageInfo:{
-    width:"90%",
+    
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4, 4, 4),
@@ -30,11 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   image: {
-    width:"90%",
+    width:"95%",
     border: '0.5px solid #000',
     justifyItems:"center",
     borderRadius: "20px 20px 20px 20px",
   },  
+  
   button:{
     marginLeft:"90%"
   }
