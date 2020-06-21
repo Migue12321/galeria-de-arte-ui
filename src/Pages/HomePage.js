@@ -13,19 +13,8 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Modal from '../Components/Modal/ImageModal'
 import InstagramIcon from '@material-ui/icons/Instagram';
+import Copyright from '../Components/Copyright/Copyright';
 
-function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center"> 
-			{'Copyright © '}
-			<Link color="inherit" href="https://www.instagram.com/isabela_0010/">
-				Isabel Condori
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
 
 const useStyles = makeStyles((theme) => ({
 	icon: {
