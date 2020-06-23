@@ -1,67 +1,62 @@
-import React, { Component } from "react"
-import Grid from "antd/lib/card/Grid"
-import { Typography } from "antd"
+import React, { Component } from 'react';
+import Container from '@material-ui/core/Container';
+import "./Login.css"
+import UserGallery from '../Components/UserGallery';
 
-import * as firebase from 'firebase'
-import { Button } from 'antd'
-import FileUpload from '../Components/Files/FileUpload'
+import EV from '../EnviromentVariable';
+const URL = EV.backend_API;
 
-export default class UserPage extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            file:{},
-            picture:{},
-            uploadValue:0
+export default class UserPage extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+        paints:[{url:"", title:"",heigth:0, width:0, detail:""}],
+        url:[],
+        index:[0]
+    }
+  }
+
+  getAllPaints(){
+    let paints = [];
+    let urls = [];
+    let url = URL+'image/';
+    fetch(url,{ method: 'GET', credentials: 'same-origin' ,
+          headers: {
+             "Access-Control-Allow-Origin": '*'
+    }}).then(res => res.text())
+    .then((res) => {
+      
+        let data = JSON.parse(res);
+        let index=[]; 
+        for(let i = 0; i<data.length; i++){
+          paints.push(data[i]);
+          index.push(i);
         }
+        this.setState({
+            paints:paints,
+            url:urls,
+            index:index
+        });
+        console.log(this.state)
+    },
+    (error) => {
+      console.log(error);
+    });
     }
 
-    onChangefile(file){
-        this.setState({file:file})
-       
-    }
-    upload(){
-        const storageRef = firebase.storage().ref(`pictures/${this.state.file.name}`)
-        const task = storageRef.put(this.state.file)
-        task.on('state_changed', (snapshot) => {
-            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            this.setState({
-            uploadValue: percentage
-            })
-        }, (error) => {
-            console.error(error.message)
-        }, () => {
-            // Upload complete
-            task.snapshot.ref.getDownloadURL().then((res) => {
-                console.log(res)
-                this.setState({
-                    picture: res
-                    })
-            })
-        })
+  componentDidMount() {
+    this.getAllPaints();
+    console.log(this.state)
+  }
 
-    }
-    
-    render(){
-        return(
-            <>
-                <Grid container>
-                    <Grid item xs={12} sm={12}>
-                        <Typography>Artista</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={12}> 
-                        <FileUpload uploadValue ={this.state.uploadValue} picture={this.state.picture}
-                                    onChangefile={this.onChangefile.bind(this)}></FileUpload>
-    
-                    </Grid>
-                    <Grid item xs={12} sm={12}> 
-                    <Button onClick={this.upload.bind(this)}>Subir imagen</Button>
-                    </Grid>
-    
-                </Grid>
-    
-            </>
-        )
-    }
+
+
+  render(){
+      return(
+        <Container >
+          <UserGallery paints={this.state.paints} cards={this.state.index}></UserGallery>
+      </Container>
+      )
+  }
+
 }
-

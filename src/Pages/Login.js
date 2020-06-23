@@ -11,8 +11,7 @@ import Container from '@material-ui/core/Container';
 import Copyright from '../Components/Copyright/Copyright'
 import firebase from 'firebase';
 import "./Login.css"
-const EV = ""
-const URL = EV.backend_API;
+
   
 
 export default class Login extends Component {
