@@ -33,9 +33,6 @@ export default class FileUpload extends Component {
           variant="contained">
           <input type='file' color="secondary" onChange={this.handleOnChange.bind(this)}/>
        </Button>
-     
-
-     
       </div>
     )
   }

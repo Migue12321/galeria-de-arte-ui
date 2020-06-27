@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import { createMuiTheme,MuiThemeProvider} from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'; 
 import Link from '@material-ui/core/Link';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Copyright from '../Copyright/Copyright';
-import Modal from '../Modal/ImageModal'
+import Modal from '../Modal/ImageModal';
+import ModalEdit from "../Modal/ModalEdit.js"
+import { createMuiTheme,MuiThemeProvider, makeStyles } from '@material-ui/core/styles';
+import EV from '../../EnviromentVariable';
+import * as firebase from 'firebase';
 
+const URL = EV.backend_API;
 const useStyles = makeStyles((theme) => ({
 	icon: {
 		marginRight: theme.spacing(2),
@@ -50,11 +53,12 @@ const useStyles = makeStyles((theme) => ({
 const theme = createMuiTheme({
 		palette: {
 			primary: {
-					main: '#43A047',
+				main: '#43A047',
 			},
 			secondary: {
-				main: '#76d275  ',
-		}
+				main: '#FA465C',
+			},
+			
 		},
 		typography: {
 			"font-family": `'Roboto Mono', "monospace"`,
@@ -68,25 +72,120 @@ const theme = createMuiTheme({
 export default function Album(props) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
+	const [openEdit, setOpenEdit] = React.useState(false);
 	const [ImageUrl, setImageUrl] = useState("");
 	const [title, setTitle] = useState("");
-	const [size, setSize] = useState("");
+	const [height, setHeight] = useState("");
+	const [width, setWidth] = useState("");
+	const [imageId, setImageId] = useState("");
+	const formInput= {
+        marginTop: "0.5em",
+        minWidth: 120,
+    };
 	const handleOpen  =(i) =>{
 		setOpen(true);
 		setImageUrl(props.paints[i].url);
-		setTitle(props.paints[i].title)
-		setSize(props.paints[i].height+ "x"+props.paints[i].width)
+		setTitle(props.paints[i].title);
+		setHeight(props.paints[i].height)
+		setWidth(props.paints[i].width);
+		setImageId(props.paints[i]._id);
+	}
+	const handleChange = (i,e)=>{
+		let text =e.target.value;
+		if(i==="title")
+			setTitle(text);
+		if(i==="height"){
+			console.log(text)
+			if(validar_num(text)){
+				setHeight(text);
+			}
+		}
+		if(i==="width"){
+			if(validar_num(text)){
+				setWidth(text);
+			}
+		}
+		
+	}
+	const validar_num =(num)=>{
+		if(isNaN(num)){
+			return false;
+		}else{
+			return true;
+		}
 	}
 	const handleClose =() =>{
 		setOpen(false);
-    }
-    
+		setOpenEdit(false)
+	}	
+	const handleOpenEdit  =(i) =>{
+		setOpenEdit(true);
+		setImageUrl(props.paints[i].url);
+		setTitle(props.paints[i].title);
+		setHeight(props.paints[i].height)
+		setWidth(props.paints[i].width);
+		setImageId(props.paints[i]._id);
+	}
+	
+	const update = (id) =>{
+		let form = {
+			id: id,
+			title: title,
+			height:height,
+			width: width,
+			forSale: false,
+			url: ImageUrl
+		}
+		form = JSON.stringify(form)
+		let url = URL+"image/";
+		fetch(url,{     
+			method: 'PUT',
+			body: form ,
+			credentials: 'same-origin',
+			headers: { 'Content-Type': 'application/json; charset=UTF-8'}  })
+			.then(res => {
+			if(res.status >=200 || res.status >400){
+				window.location.reload();
+				return true
+			}else{
+				alert("Error al guardar, intente de nuevo");
+				console.log(res)
+				return false
+			}
+			}).catch(error =>{
+			console.log("Profile page error:",error.message);
+			})
+	}
+	const deleteImage = (i)=>{
+		let url = URL+"image/"+props.paints[i]._id;
+		fetch(url,{     
+			method: 'DELETE',
+			credentials: 'same-origin',
+			headers: { 'Content-Type': 'application/json; charset=UTF-8'}  })
+			.then(res => {
+			if(res.status >=200 || res.status >400){
+				let imageRef = firebase.storage().refFromURL(`gs://galleria-de-arte.appspot.com/pictures/${title}`);
+				imageRef.delete().then(function() {
+					window.location.reload();
+				}).catch(function(error) {
+					console.log(error)
+				});
+				window.location.reload();
 
+				return true
+			}else{
+				alert("Error al borrar, intente de nuevo");
+				console.log(res)
+				return false
+			}
+			}).catch(error =>{
+				console.log("Profile page error:",error.message);
+			})
+	}
 
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			{console.log(props.paints)}
 			<MuiThemeProvider theme = { theme }>
 			<main>
 				<Container className={classes.cardGrid} maxWidth="lg">
@@ -110,31 +209,54 @@ export default function Album(props) {
 										</Typography>
 									</CardContent>
 									<CardActions>
-										<Button size="small" color="primary" onClick={handleOpen.bind(this,card)}>
-											Ver
-										</Button>
+										<Grid container spacing={4}> 
+											<Grid item xs sm>
+												<Button size="small" color="primary" onClick={handleOpen.bind(this,card)}>
+													Ver
+												</Button>
+											</Grid>
+											<Grid item xs sm>
+												<Button size="small"  color="primary" onClick={handleOpenEdit.bind(this,card)}>
+													Editar
+												</Button>
+											</Grid>
+											<Grid item xs sm>
+												<Button size="small" color="secondary" onClick={deleteImage.bind(this,card)}>
+													Eliminar
+												</Button>
+											</Grid>
+										</Grid>
 									</CardActions>
 								</Card>
 							</Grid>
 						))}
 					</Grid>
 				</Container>
-				<Modal open ={open}
-								handleClose = {handleClose}
-								image= {ImageUrl}
-								size = {size}
-								title = {title}
+				<Modal
+					open ={open}
+					handleClose = {handleClose}
+					image= {ImageUrl}
+					size = {height +" X "+ width}
+					title = {title}
 				></Modal>
+				<ModalEdit
+					open ={openEdit}
+					handleClose = {handleClose}
+					image= {ImageUrl}
+					height = {height}
+					width = {width}
+					title = {title}
+					id = {imageId}
+					update = {update}
+					handleChange ={handleChange}
+					formInput ={formInput}
+				></ModalEdit>
 			</main>
-			{/* Footer */}
 			
 			<footer className={classes.footer}>
 				<Typography variant="h6" align="center" gutterBottom>
 					Sigueme en:
 				</Typography>
-				{/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-				</Typography>
-			 */}
 				<Grid container justify="center">
 					<Typography variant="subtitle1" align="center" color="textSecondary" component="p">
 						<Link color="inherit" href="https://www.instagram.com/isabela_0010/">

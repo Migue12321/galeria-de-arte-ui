@@ -54,25 +54,24 @@ export default class UploadImageForm extends Component{
 			 
 		}
 		upload(){
-				const storageRef = firebase.storage().ref(`pictures/${this.state.paintData.title}`)
-				const task = storageRef.put(this.state.file)
-				task.on('state_changed', (snapshot) => {
-						let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+			const storageRef = firebase.storage().ref(`pictures/${this.state.paintData.title}`)
+			const task = storageRef.put(this.state.file)
+			task.on('state_changed', (snapshot) => {
+					let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+					this.setState({
+					uploadValue: percentage
+					})
+			}, (error) => {
+					console.error(error.message)
+			}, () => {
+					// Upload complete
+					task.snapshot.ref.getDownloadURL().then((res) => {
 						this.setState({
-						uploadValue: percentage
+							picture: res
 						})
-				}, (error) => {
-						console.error(error.message)
-				}, () => {
-						// Upload complete
-						task.snapshot.ref.getDownloadURL().then((res) => {
-								console.log(res)
-								this.setState({
-										picture: res
-										})
-								this.saveImage()
-						})
-				})
+						this.saveImage()
+					})
+			})
 		}
 
 		saveImage(){
@@ -117,8 +116,7 @@ export default class UploadImageForm extends Component{
 										<Grid item xs={12} sm={12}>
 												<Typography>Subir nueva Pintura</Typography>
 										</Grid>
-										<form
-										>
+										<form>
 											<Grid item xs={12} sm={12}> 
 												<FileUpload 
 													uploadValue ={this.state.uploadValue} 

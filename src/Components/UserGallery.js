@@ -6,9 +6,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import UploadImageForm from './Forms/UploadImageForm'
-import EV from '../EnviromentVariable';
 import Gallery from './Gallery/Gallery';
-const URL = EV.backend_API;
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
