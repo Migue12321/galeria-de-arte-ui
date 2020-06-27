@@ -2,7 +2,6 @@
   "name": "galeria-de-arte",
   "version": "0.1.0",
   "private": true,
-  "main": "app.js",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
@@ -16,15 +15,15 @@
     "react-dom": "^16.13.1",
     "react-material-ui-form-validator": "^2.0.10",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "3.4.0",
     "react-with-firebase-auth": "^1.3.2"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "heroku-postbuild": "npm run build"
-  }  ,
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
