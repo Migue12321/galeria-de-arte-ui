@@ -158,29 +158,32 @@ export default function Album(props) {
 	}
 	const deleteImage = (i)=>{
 		let url = URL+"image/"+props.paints[i]._id;
-		fetch(url,{     
-			method: 'DELETE',
-			credentials: 'same-origin',
-			headers: { 'Content-Type': 'application/json; charset=UTF-8'}  })
-			.then(res => {
-			if(res.status >=200 || res.status >400){
-				let imageRef = firebase.storage().refFromURL(`gs://galleria-de-arte.appspot.com/pictures/${title}`);
-				imageRef.delete().then(function() {
+		if (window.confirm("¿Esta seguro que deseas eliminar esta imagen?")) {
+			fetch(url,{     
+				method: 'DELETE',
+				credentials: 'same-origin',
+				headers: { 'Content-Type': 'application/json; charset=UTF-8'}  })
+				.then(res => {
+				if(res.status >=200 || res.status >400){
+					let imageRef = firebase.storage().refFromURL(`gs://galleria-de-arte.appspot.com/pictures/${title}`);
+					imageRef.delete().then(function() {
+						window.location.reload();
+					}).catch(function(error) {
+						console.log(error)
+					});
 					window.location.reload();
-				}).catch(function(error) {
-					console.log(error)
-				});
-				window.location.reload();
-
-				return true
-			}else{
-				alert("Error al borrar, intente de nuevo");
-				console.log(res)
-				return false
-			}
-			}).catch(error =>{
-				console.log("Profile page error:",error.message);
-			})
+	
+					return true
+				}else{
+					alert("Error al borrar, intente de nuevo");
+					console.log(res)
+					return false
+				}
+				}).catch(error =>{
+					console.log("Profile page error:",error.message);
+				})
+		}
+		
 	}
 
 	return (
