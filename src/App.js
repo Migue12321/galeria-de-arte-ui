@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import HomePage from './Pages/HomePage';
 import Login from './Pages/Login';
 import UserPage from './Pages/UserPage';
-import Link from '@material-ui/core/Link';
 
 import { makeStyles } from '@material-ui/core/styles';
 // Route, Link,
@@ -143,8 +142,7 @@ class App extends Component{
             <br/>
             <br/>
             <Typography variant="h6" color="inherit" noWrap>
-              <Link color="inherit" href="/user/login">Isa Condori
-						</Link>	
+            Isa Condori	
             </Typography> 
             </Grid>
            
