@@ -1,4 +1,4 @@
 module.exports =  {
-    backend_API : "http://localhost:4000/api/",
+    backend_API : "https://elrincondeisabackend.herokuapp.com/api/",
     name: "Galeria",
 };
