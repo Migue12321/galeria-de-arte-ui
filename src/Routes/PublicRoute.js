@@ -5,11 +5,11 @@ const PublicRoute = ({component: Component, ...rest} )=>(
     <Route
         {...rest}
         render= {props =>
-            !sessionStorage.getItem("role")   ? (
+            !sessionStorage.getItem("id")   ? (
             <Component {...props}/>
            
         ) : (
-            <Redirect exact to="/home"/>
+            <Redirect exact to="/user/login"/>
         )
     }/>
 );

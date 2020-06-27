@@ -1,0 +1,15 @@
+progress[value] {
+    width: 100%;
+    height: 5px;
+  
+    /* Reinicializar estilos */
+  
+    appearance: none;
+    -webkit-appearance: none;
+}
+progress[value]::-webkit-progress-bar {
+    background-color: #bdbdbd;
+  }
+  progress[value]::-webkit-progress-value {
+    background-color: #7ac342;
+  }
