@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Container from '@material-ui/core/Container';
 import "./Login.css"
-import Gallery from '../Components/Gallery/PublicGallery';
+import UserGallery from '../Components/UserGallery';
 
 import EV from '../EnviromentVariable';
 const URL = EV.backend_API;
@@ -54,7 +54,7 @@ export default class UserPage extends Component {
   render(){
       return(
         <Container >
-          <Gallery paints={this.state.paints} cards={this.state.index}></Gallery>
+          <UserGallery paints={this.state.paints} cards={this.state.index}></UserGallery>
       </Container>
       )
   }
