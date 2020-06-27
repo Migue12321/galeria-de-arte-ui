@@ -142,7 +142,8 @@ class App extends Component{
             <br/>
             <br/>
             <Typography variant="h6" color="inherit" noWrap>
-              Isa Condori
+              <Link color="inherit" href="/user/login">Isa Condori
+						</Link>	
             </Typography> 
             </Grid>
            
