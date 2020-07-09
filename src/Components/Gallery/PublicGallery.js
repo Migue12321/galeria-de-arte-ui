@@ -81,8 +81,7 @@ export default function Album(props) {
 	const handleClose =() =>{
 		setOpen(false);
 	}
-
-
+	
 	return (
 		<React.Fragment>
 			<CssBaseline />
@@ -102,31 +101,36 @@ export default function Album(props) {
 				<Container className={classes.cardGrid} maxWidth="md">
 					{/* End hero unit */}
 					<Grid container spacing={4}> 
-						{props.cards.map((card) => (
-							<Grid item key={card} xs={12} sm={6} md={4}>
-								<Card className={classes.card}>
-									<CardMedia
-										className={classes.cardMedia}
-										image={props.paints[card].url}
-										title={props.paints[card].title}
-									/>
-									<CardContent className={classes.cardContent}>
-									<Typography variant="subtitle1">
-											{props.paints[card].title}
-										</Typography>
-										<br/>
-										<Typography variant="subtitle2" >
-										{props.paints[card].height} X {props.paints[card].width}
-										</Typography>
-									</CardContent>
-									<CardActions>
-										<Button size="small" color="primary" onClick={handleOpen.bind(this,card)}>
-											Ver
-										</Button>
-									</CardActions>
-								</Card>
-							</Grid>
-						))}
+				{props.cards.map((card) => (
+						<Grid item key={card} xs={12} sm={6} md={4}>
+							<Card className={classes.card}>
+								<CardMedia
+									className={classes.cardMedia}
+									image={props.paints[card].url}
+									title={props.paints[card].title}
+								/>
+								<CardContent className={classes.cardContent}>
+								<Typography variant="subtitle1">
+										{props.paints[card].title}
+									</Typography>
+									<br/>
+									<Typography variant="subtitle2" >
+									{props.paints[card].height} X {props.paints[card].width}
+									</Typography>
+								</CardContent>
+								<CardActions>
+									<Button size="small" color="primary" onClick={handleOpen.bind(this,card)}>
+										Ver
+									</Button>
+								</CardActions>
+							</Card>
+						</Grid>
+					))}
+					{props.paints.length === 0 && 
+					<Typography variant="h5" align="center" color="textSecondary" paragraph>
+						No hay pinturas disponibles para mostrar, espera un poco mas, estoy trabajando en ello.
+					</Typography>
+					}
 					</Grid>
 				</Container>
 				<Modal open ={open}

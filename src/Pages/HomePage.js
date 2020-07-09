@@ -10,9 +10,10 @@ export default class UserPage extends Component {
   constructor(props){
     super(props)
     this.state={
-        paints:[{url:"", title:"",heigth:0, width:0, detail:""}],
+      loading: true,
+        paints:[],
         url:[],
-        index:[0]
+        index:[]
     }
   }
 
@@ -25,7 +26,6 @@ export default class UserPage extends Component {
              "Access-Control-Allow-Origin": '*'
     }}).then(res => res.text())
     .then((res) => {
-      
         let data = JSON.parse(res);
         let index=[]; 
         for(let i = 0; i<data.length; i++){
@@ -35,9 +35,10 @@ export default class UserPage extends Component {
         this.setState({
             paints:paints,
             url:urls,
-            index:index
+            index:index,
+            loading:false
         });
-        console.log(this.state)
+       
     },
     (error) => {
       console.log(error);
@@ -47,6 +48,7 @@ export default class UserPage extends Component {
   componentDidMount() {
     this.getAllPaints();
     console.log(this.state)
+    this.setState({loading:false})
   }
 
 
@@ -54,7 +56,7 @@ export default class UserPage extends Component {
   render(){
       return(
         <Container >
-          <Gallery paints={this.state.paints} cards={this.state.index}></Gallery>
+          <Gallery loading={this.state.loading} paints={this.state.paints} cards={this.state.index}></Gallery>
       </Container>
       )
   }
