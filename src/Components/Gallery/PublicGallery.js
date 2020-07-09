@@ -128,7 +128,7 @@ export default function Album(props) {
 					))}
 					{props.paints.length === 0 && 
 					<Typography variant="h5" align="center" color="textSecondary" paragraph>
-						No hay pinturas disponibles para mostrar, espera un poco mas, estoy trabajando en ello.
+						No hay pinturas disponibles para mostrar, espera un poco más, estoy trabajando en ello.
 					</Typography>
 					}
 					</Grid>
