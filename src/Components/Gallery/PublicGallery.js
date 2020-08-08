@@ -91,17 +91,16 @@ export default function Album(props) {
 				<div className={classes.heroContent}>
 					<Container maxWidth="sm">
 						<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-							El Arte de Isa
+							Isabela Watercolors
 						</Typography>
 						<Typography variant="h5" align="center" color="textSecondary" paragraph>
-						Isabela watercolors
 						</Typography>
 					</Container>
 				</div>
 				<Container className={classes.cardGrid} maxWidth="md">
 					{/* End hero unit */}
 					<Grid container spacing={4}> 
-				{props.cards.map((card) => (
+					{props.cards.map((card) => (
 						<Grid item key={card} xs={12} sm={6} md={4}>
 							<Card className={classes.card}>
 								<CardMedia

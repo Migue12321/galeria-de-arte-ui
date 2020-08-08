@@ -3,7 +3,7 @@ import './App.css';
 import { createMuiTheme,MuiThemeProvider} from '@material-ui/core/styles';
 import { AppBar, Typography, Grid } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
+import ColorLensIcon from '@material-ui/icons/ColorLens';
 import Button from '@material-ui/core/Button';
 
 
@@ -138,11 +138,11 @@ class App extends Component{
            justify="flex-start"
            alignItems="center"
           >
-            <CameraIcon className = {this.classes.icon} />
+            <ColorLensIcon className = {this.classes.icon} />
             <br/>
             <br/>
             <Typography variant="h6" color="inherit" noWrap>
-            Isa Condori	
+              Isa Condori	
             </Typography> 
             </Grid>
            

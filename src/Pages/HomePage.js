@@ -47,8 +47,6 @@ export default class UserPage extends Component {
 
   componentDidMount() {
     this.getAllPaints();
-    console.log(this.state)
-    this.setState({loading:false})
   }
 
 
