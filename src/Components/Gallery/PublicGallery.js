@@ -94,7 +94,7 @@ export default function Album(props) {
 							El Arte de Isa
 						</Typography>
 						<Typography variant="h5" align="center" color="textSecondary" paragraph>
-							Aqui vendra informacion super cool sobre el arte de Isa y sobre ella, tambien informacion sobre los productos que llegue a vender :3
+						Isabela watercolors
 						</Typography>
 					</Container>
 				</div>
