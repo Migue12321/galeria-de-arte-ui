@@ -14,7 +14,19 @@ import Link from '@material-ui/core/Link';
 import Modal from '../Modal/ImageModal'
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Copyright from '../Copyright/Copyright';
+import Backdrop from '../Backdrop/Backdrop';
 
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+  } from "react-share";
+  import {
+	FacebookIcon,
+	TwitterIcon,
+	WhatsappIcon,
+  } from "react-share";
+  
 
 const useStyles = makeStyles((theme) => ({
 	icon: {
@@ -67,6 +79,8 @@ const theme = createMuiTheme({
 	});
 	
 export default function Album(props) {
+	const urlLink = "https://isabela-watercolors.netlify.app/";
+	const titleShare = "Isabela Watercolors web";
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const [ImageUrl, setImageUrl] = useState("")
@@ -100,6 +114,7 @@ export default function Album(props) {
 				<Container className={classes.cardGrid} maxWidth="md">
 					{/* End hero unit */}
 					<Grid container spacing={4}> 
+					<Backdrop open = {props.loading}></Backdrop>
 					{props.cards.map((card) => (
 						<Grid item key={card} xs={12} sm={6} md={4}>
 							<Card className={classes.card}>
@@ -125,7 +140,7 @@ export default function Album(props) {
 							</Card>
 						</Grid>
 					))}
-					{props.paints.length === 0 && 
+					{(props.paints.length === 0 && !props.loading) && 
 					<Typography variant="h5" align="center" color="textSecondary" paragraph>
 						No hay pinturas disponibles para mostrar, espera un poco más, estoy trabajando en ello.
 					</Typography>
@@ -154,7 +169,32 @@ export default function Album(props) {
 						</Link>	
 					</Typography>
 				</Grid>
-				<Copyright />
+			<Typography variant="body2" color="textSecondary" align="center"> 
+				 Compartir: 
+			</Typography>
+			<FacebookShareButton
+				url={urlLink}
+				title={titleShare}
+				className="Demo__some-network__share-button"
+          	>
+           		<FacebookIcon size={32} round />
+          	</FacebookShareButton>
+			<TwitterShareButton
+				url={urlLink}
+				title={titleShare}
+				className="Demo__some-network__share-button"
+			>
+            	<TwitterIcon size={32} round />
+         	</TwitterShareButton>
+			<WhatsappShareButton
+				url={urlLink}
+				title={titleShare}
+				separator=":: "
+				className="Demo__some-network__share-button"
+			>
+				<WhatsappIcon size={32} round />
+			</WhatsappShareButton>
+			<Copyright />
 			</footer>
 			{/* End footer */}
 			</MuiThemeProvider>
