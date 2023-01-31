@@ -1,62 +1,47 @@
-import React, { Component } from 'react';
-import Container from '@material-ui/core/Container';
-import "./Login.css"
-import UserGallery from '../Components/UserGallery';
+import React, { useState, useEffect } from "react";
+import Container from "@material-ui/core/Container";
+import "./Login.css";
+import UserGallery from "../Components/UserGallery";
 
-import EV from '../EnviromentVariable';
-const URL = EV.backend_API;
+export default function UserPage(props) {
+  const [paints, setPaints] = useState([
+    { url: "", title: "", heigth: 0, width: 0, detail: "" },
+  ]);
+  const [index, setIndex] = useState([0]);
 
-export default class UserPage extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-        paints:[{url:"", title:"",heigth:0, width:0, detail:""}],
-        url:[],
-        index:[0]
-    }
-  }
-
-  getAllPaints(){
+  const getAllPaints = () => {
     let paints = [];
-    let urls = [];
-    let url = URL+'image/';
-    fetch(url,{ method: 'GET', credentials: 'same-origin' ,
-          headers: {
-             "Access-Control-Allow-Origin": '*'
-    }}).then(res => res.text())
-    .then((res) => {
-      
-        let data = JSON.parse(res);
-        let index=[]; 
-        for(let i = 0; i<data.length; i++){
-          paints.push(data[i]);
-          index.push(i);
+    let url = process.env.REACT_APP_BACKEND_API + "image/";
+    fetch(url, {
+      method: "GET",
+      credentials: "same-origin",
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
+      .then((res) => res.text())
+      .then(
+        (res) => {
+          let data = JSON.parse(res);
+          let index = [];
+          for (let i = 0; i < data.length; i++) {
+            paints.push(data[i]);
+            index.push(i);
+          }
+          setPaints(paints);
+          setIndex(index);
+        },
+        (error) => {
+          console.log(error);
         }
-        this.setState({
-            paints:paints,
-            url:urls,
-            index:index
-        });
-        console.log(this.state)
-    },
-    (error) => {
-      console.log(error);
-    });
-    }
+      );
+  };
 
-  componentDidMount() {
-    this.getAllPaints();
-    console.log(this.state)
-  }
+  useEffect(() => {
+    getAllPaints();
+  }, []);
 
-
-
-  render(){
-      return(
-        <Container >
-          <UserGallery paints={this.state.paints} cards={this.state.index}></UserGallery>
-      </Container>
-      )
-  }
-
+  return (
+    <Container>
+      <UserGallery paints={paints} cards={index}></UserGallery>
+    </Container>
+  );
 }
