@@ -94,7 +94,7 @@ export default function PublicGallery(props) {
                 color="textPrimary"
                 gutterBottom
               >
-                El Arte de Isa
+                Galeria de Arte de Isa
               </Typography>
               <Typography
                 variant="h5"
@@ -102,9 +102,8 @@ export default function PublicGallery(props) {
                 color="textSecondary"
                 paragraph
               >
-                Aqui vendra informacion super cool sobre el arte de Isa y sobre
-                ella, tambien informacion sobre los productos que llegue a
-                vender :3
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Typography>
             </Container>
           </div>

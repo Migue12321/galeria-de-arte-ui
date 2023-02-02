@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   image: {
-    width: "95%",
     border: "0.5px solid #000",
     justifyItems: "center",
     borderRadius: "20px 20px 20px 20px",
+    maxWidth: "70%"
   },
 
   button: {
