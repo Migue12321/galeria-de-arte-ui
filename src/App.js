@@ -7,7 +7,7 @@ import CameraIcon from "@material-ui/icons/PhotoCamera";
 import Button from "@material-ui/core/Button";
 
 import HomePage from "./Pages/HomePage";
-import Login from "./Pages/Login";
+import Login from "./Pages/Login/Login";
 import UserPage from "./Pages/UserPage";
 
 import { makeStyles } from "@material-ui/core/styles";

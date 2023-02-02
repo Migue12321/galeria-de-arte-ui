@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import "./Login.css";
+import "../Pages/Login/Login";
 import UserGallery from "../Components/Gallery/UserGallery";
 
 export default function UserPage(props) {
