@@ -5,8 +5,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import UploadImageForm from "./Forms/UploadImageForm";
-import Gallery from "./Gallery/Gallery";
+import UploadImageForm from "../Forms/UploadImageForm";
+import Gallery from "./Gallery";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",

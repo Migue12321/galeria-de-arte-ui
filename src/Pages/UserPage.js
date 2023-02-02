@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import "./Login.css";
-import UserGallery from "../Components/UserGallery";
+import UserGallery from "../Components/Gallery/UserGallery";
 
 export default function UserPage(props) {
   const [paints, setPaints] = useState([
