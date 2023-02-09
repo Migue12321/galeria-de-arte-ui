@@ -14,8 +14,8 @@ export default function FileUpload(props) {
         {props.uploadValue} %
       </progress>
       <br />
-      <Button color="secondary" variant="contained">
-        <input type="file" color="secondary" onChange={handleOnChange} />
+      <Button className="uploadFile" color="secondary" variant="contained">
+        <input  data-testid="uploadFile" id="file" type="file" color="secondary" onChange={handleOnChange} />
       </Button>
     </div>
   );
